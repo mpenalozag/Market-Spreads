@@ -1,4 +1,5 @@
 import requests
+from market import get_all_markets, get_market_order_book
 
 API_BUDA_URL = "https://www.buda.com/api/v2"
 
@@ -21,7 +22,6 @@ def get_market_spread(market_id: str) -> float:
     Retorna un float, que indica el spread del mercado pedido.
     """
     order_book = get_market_order_book(market_id)["order_book"]
-    print(order_book)
     try:
         lowest_ask = float(order_book["asks"][0][0])
         highest_bid = float(order_book["bids"][0][0])

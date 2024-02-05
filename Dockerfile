@@ -1,4 +1,4 @@
-FROM python:3.12.1
+FROM python:3.9-alpine
  
 WORKDIR /code
  
@@ -6,9 +6,6 @@ COPY ./requirements.txt /code/requirements.txt
  
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
  
-COPY ./ /code/app
+COPY ./ /code
 
-COPY markets_requests.py /code/app
-
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
